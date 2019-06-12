@@ -8,7 +8,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-const config = {         
+const config = {
   devtool: false,
   entry: {
     main: [
@@ -18,13 +18,13 @@ const config = {
       'bootstrap/dist/css/bootstrap.min.css',
     ],
     bundle: ['jquery', 'popper.js', 'bootstrap'],
-  },                      
+  },
 
   output: {
     path: path.resolve(__dirname, 'public'),
     filename: 'js/[name].js',
   },
-  
+
   module: {
     rules: [
       {
@@ -36,6 +36,17 @@ const config = {
             presets: ['@babel/preset-env'],
           },
         }],
+      },
+      {
+        test: /\.njk$/,
+        use: [
+          {
+            loader: 'nunjucks-isomorphic-loader',
+            query: {
+              root: [path.resolve(__dirname, 'src/html')]
+            }
+          }
+        ]
       },
       {
         test: /\.(sa|sc|c)ss$/,
@@ -90,16 +101,16 @@ const config = {
         to: './uploads'
       },
       {
-        from: './src/js/json',
-        to: './js/json'
+        from: './src/json',
+        to: './json'
       }
     ]),
     new MiniCssExtractPlugin({
       filename: 'css/[name].css'
     }),
-    new HtmlWebpackPlugin({   
-      template: './src/html/index.html',
-      title: 'Знакомство с Webpack'
+    new HtmlWebpackPlugin({
+      myOptions: { foo: 'bar' },
+      template: 'src/html/index.njk'
     })
   ],
 

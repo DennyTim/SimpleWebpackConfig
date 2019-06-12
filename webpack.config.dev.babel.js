@@ -1,8 +1,9 @@
 import '@babel/polyfill';
 const webpack = require('webpack');
+const path = require('path');
 const autoprefixer = require('autoprefixer');
 const HtmlWebpackPlugin = require('html-webpack-plugin'); //для генерации html файла
-const CopyWebpackPlugin= require('copy-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const conf = {
   entry: {
@@ -22,6 +23,9 @@ const conf = {
     historyApiFallback: true,
     port: 3000,
     hot: true,
+    inline: true,
+    contentBase: './src',
+    proxy: { "/api/**": { target: 'http://localhost:3000', secure: false } }
   },
   module: {
     rules: [
@@ -63,6 +67,17 @@ const conf = {
         ],
       },
       {
+        test: /\.njk$/,
+        use: [
+          {
+            loader: 'nunjucks-isomorphic-loader',
+            query: {
+              root: [path.resolve(__dirname, 'src/html')]
+            }
+          }
+        ]
+      },
+      {
         test: /\.(png|gif|jpe?g)$/,
         use: [
           {
@@ -79,7 +94,7 @@ const conf = {
   plugins: [
     new webpack.DefinePlugin({
       'process.env': {
-        devServer: true,
+        devServer: true
       },
     }),
     new webpack.ProvidePlugin({
@@ -97,12 +112,14 @@ const conf = {
     }),
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
-      template: './src/html/index.html',
-    }),
+      myOptions: { foo: 'bar' },
+      filename: 'index.html',
+      template: 'src/html/index.njk'
+    })
   ],
 };
 
 module.exports = (env, options) => {
-  conf.devtool = options.mode === "production" ?  false : "cheap-module-eval-source-map";
+  conf.devtool = options.mode === "production" ? false : "cheap-module-eval-source-map";
   return conf;
 };

@@ -1,13 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Заголовок</title>
-</head>
-<body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+{% extends "_layout.njk" %}
+
+{% block content %}
+
+{# {{ vars.foo }} #}
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
     <div class="container">
       <a class="navbar-brand" href="#">
             <img src="http://placehold.it/150x50?text=Logo" alt="">
@@ -41,5 +38,4 @@
     <h1 class="mt-4">Logo Nav by Start Bootstrap</h1>
     <p>The logo in the navbar is now a default Bootstrap feature in Bootstrap 4! Make sure to set the width and height of the logo within the HTML or with CSS. For best results, use an SVG image as your logo.</p>
   </div>
-</body>
-</html>
+{% endblock %}

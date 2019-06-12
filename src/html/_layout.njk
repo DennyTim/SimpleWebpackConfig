@@ -1,0 +1,13 @@
+{% set vars = htmlWebpackPlugin.options.myOptions %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>My title</title>
+  </head>
+  <body>
+    {% block content %}
+    {% endblock %}
+  </body>
+</html>
