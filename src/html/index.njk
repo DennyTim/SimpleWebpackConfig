@@ -1,9 +1,5 @@
 {% extends "_layout.njk" %}
-
 {% block content %}
-
-{# {{ vars.foo }} #}
-
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
     <div class="container">
       <a class="navbar-brand" href="#">
@@ -26,13 +22,12 @@
             <a class="nav-link" href="#">Services</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Contact</a>
+            <a class="nav-link" href="#">{{ vars.foo }}</a>
           </li>
         </ul>
       </div>
     </div>
   </nav>
-  
   <!-- Page Content -->
   <div class="container">
     <h1 class="mt-4">Logo Nav by Start Bootstrap</h1>

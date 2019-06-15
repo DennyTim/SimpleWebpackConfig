@@ -9,7 +9,7 @@ const conf = {
   entry: {
     main: [
       '@babel/polyfill',
-      './src/js/script.js',
+      './src/js/index.js',
       'bootstrap/dist/css/bootstrap.min.css',
       './src/scss/style.scss',
     ],
@@ -115,6 +115,11 @@ const conf = {
       myOptions: { foo: 'bar' },
       filename: 'index.html',
       template: 'src/html/index.njk'
+    }),
+    new HtmlWebpackPlugin({
+      myOptions: { foo: 'bar' },
+      filename: 'addon.html',
+      template: 'src/html/addon.njk'
     })
   ],
 };

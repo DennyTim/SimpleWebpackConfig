@@ -13,7 +13,7 @@ const config = {
   entry: {
     main: [
       '@babel/polyfill',
-      './src/js/script.js',
+      './src/js/index.js',
       './src/scss/style.scss',
       'bootstrap/dist/css/bootstrap.min.css',
     ],
@@ -97,10 +97,6 @@ const config = {
         to: './img'
       },
       {
-        from: './src/uploads',
-        to: './uploads'
-      },
-      {
         from: './src/json',
         to: './json'
       }
@@ -111,6 +107,11 @@ const config = {
     new HtmlWebpackPlugin({
       myOptions: { foo: 'bar' },
       template: 'src/html/index.njk'
+    }),
+    new HtmlWebpackPlugin({
+      myOptions: { foo: 'bar' },
+      filename: 'addon.html',
+      template: 'src/html/addon.njk'
     })
   ],
 
